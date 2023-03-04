@@ -33,24 +33,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
-
-  const toggleBurgerMenu = () => {
-    setIsBurgerMenuOpen(!isBurgerMenuOpen);
-  };
-
-  return (
-    <>
-      <div className="burger-icon" onClick={toggleBurgerMenu}>
-        {isBurgerMenuOpen ? "X" : <Root />}
-      </div>
-      {isBurgerMenuOpen && (
-        <>
-          <RouterProvider router={router} />
-        </>
-      )}
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
