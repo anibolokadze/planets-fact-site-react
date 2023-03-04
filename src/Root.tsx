@@ -1,11 +1,20 @@
-import React from "react";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-
+import burgerMenu from "./assets/icon-hamburger.svg";
 export default function Root() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
   return (
     <>
-      <header>
-        <nav>
+      <nav className="burger-menu">
+        <div className="burger-icon" onClick={toggleMenu}>
+          {/* {isOpen ? <img src={burgerMenu} /> : <img src={burgerMenu} />} */}
+          {isOpen ? "X" : "X"}
+        </div>
+        {isOpen && (
           <ul>
             <li>
               <Link to="/">Mercury</Link>
@@ -32,8 +41,8 @@ export default function Root() {
               <Link to="/Neptune">Neptune</Link>
             </li>
           </ul>
-        </nav>
-      </header>
+        )}
+      </nav>
       <Outlet />
     </>
   );

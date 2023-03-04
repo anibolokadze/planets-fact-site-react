@@ -5,7 +5,6 @@ import geology from "../assets/geology-mercury.png";
 import { useState } from "react";
 import Footer from "../Components/Footer";
 
-import styled from "styled-components";
 type ParagraphProps = {
   title: string;
 };
@@ -83,15 +82,15 @@ export default function Mercury() {
         {selectedParagraph === "surface" && (
           <SurfaceParagraph title={data[0].geology.content} />
         )}
-      </div>
 
-      <div>
-        <Footer
-          rotation={data[0].rotation}
-          revolution={data[0].revolution}
-          radius={data[0].radius}
-          temperature={data[0].temperature}
-        />
+        <div>
+          <Footer
+            rotation={data[0].rotation}
+            revolution={data[0].revolution}
+            radius={data[0].radius}
+            temperature={data[0].temperature}
+          />
+        </div>
       </div>
     </>
   );
