@@ -1,6 +1,8 @@
+import { useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
+  Link,
   Route,
   RouterProvider,
 } from "react-router-dom";
@@ -31,7 +33,24 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  const [isBurgerMenuOpen, setIsBurgerMenuOpen] = useState(false);
+
+  const toggleBurgerMenu = () => {
+    setIsBurgerMenuOpen(!isBurgerMenuOpen);
+  };
+
+  return (
+    <>
+      <div className="burger-icon" onClick={toggleBurgerMenu}>
+        {isBurgerMenuOpen ? "X" : <Root />}
+      </div>
+      {isBurgerMenuOpen && (
+        <>
+          <RouterProvider router={router} />
+        </>
+      )}
+    </>
+  );
 }
 
 export default App;
