@@ -4,9 +4,13 @@ import internal from "../assets/planet-venus-internal.svg";
 import geology from "../assets/geology-venus.png";
 import { useState } from "react";
 import Footer from "../Components/Footer";
+import styled from "styled-components";
+
 type ParagraphProps = {
   title: string;
 };
+
+const venusColor = data[1].color;
 
 const OverviewParagraph: React.FC<ParagraphProps> = ({ title }) => {
   return (
@@ -68,9 +72,24 @@ export default function Mercury() {
     <>
       <h1>{data[1].name}</h1>
       <div>
-        <button onClick={handleOverviewClick}>Overview</button>
-        <button onClick={handleStructureClick}>Structure</button>
-        <button onClick={handleSurfaceClick}>Surface</button>
+        <ALink
+          onClick={handleOverviewClick}
+          isActive={selectedParagraph === "overview"}
+        >
+          Overview
+        </ALink>
+        <ALink
+          onClick={handleStructureClick}
+          isActive={selectedParagraph === "structure"}
+        >
+          Structure
+        </ALink>
+        <ALink
+          onClick={handleSurfaceClick}
+          isActive={selectedParagraph === "surface"}
+        >
+          Surface
+        </ALink>
 
         {selectedParagraph === "overview" && (
           <OverviewParagraph title={data[1].overview.content} />
@@ -96,3 +115,12 @@ export default function Mercury() {
     </>
   );
 }
+
+const ALink = styled.a<{ isActive: boolean }>`
+  border-bottom: ${({ isActive }) =>
+    isActive ? `2px solid ${venusColor}` : "none"};
+  &:hover {
+    border-bottom: 2px solid ${venusColor};
+    cursor: pointer;
+  }
+`;

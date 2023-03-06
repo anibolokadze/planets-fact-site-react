@@ -4,12 +4,14 @@ import internal from "../assets/planet-mercury-internal.svg";
 import geology from "../assets/geology-mercury.png";
 import { useState } from "react";
 import Footer from "../Components/Footer";
+import styled from "styled-components";
 
 type ParagraphProps = {
   title: string;
 };
 
-const mercury = data[0].color;
+const mercuryColor = data[0].color;
+
 const OverviewParagraph: React.FC<ParagraphProps> = ({ title }) => {
   return (
     <div>
@@ -51,7 +53,6 @@ export default function Mercury() {
   const [selectedParagraph, setSelectedParagraph] = useState<
     "overview" | "structure" | "surface"
   >("overview");
-
   const handleOverviewClick = () => {
     setSelectedParagraph("overview");
   };
@@ -66,9 +67,24 @@ export default function Mercury() {
   return (
     <>
       <div>
-        <a onClick={handleOverviewClick}>Overview</a>
-        <a onClick={handleStructureClick}>Structure</a>
-        <a onClick={handleSurfaceClick}>Surface</a>
+        <ALink
+          onClick={handleOverviewClick}
+          isActive={selectedParagraph === "overview"}
+        >
+          Overview
+        </ALink>
+        <ALink
+          onClick={handleStructureClick}
+          isActive={selectedParagraph === "structure"}
+        >
+          Structure
+        </ALink>
+        <ALink
+          onClick={handleSurfaceClick}
+          isActive={selectedParagraph === "surface"}
+        >
+          Surface
+        </ALink>
 
         <h1>{data[0].name}</h1>
 
@@ -94,3 +110,12 @@ export default function Mercury() {
     </>
   );
 }
+
+const ALink = styled.a<{ isActive: boolean }>`
+  border-bottom: ${({ isActive }) =>
+    isActive ? `2px solid ${mercuryColor}` : "none"};
+  &:hover {
+    border-bottom: 2px solid ${mercuryColor};
+    cursor: pointer;
+  }
+`;
