@@ -65,11 +65,12 @@ export default function Mercury() {
   };
   return (
     <>
-      <h1>{data[0].name}</h1>
       <div>
         <a onClick={handleOverviewClick}>Overview</a>
         <a onClick={handleStructureClick}>Structure</a>
         <a onClick={handleSurfaceClick}>Surface</a>
+
+        <h1>{data[0].name}</h1>
 
         {selectedParagraph === "overview" && (
           <OverviewParagraph title={data[0].overview.content} />
@@ -83,14 +84,12 @@ export default function Mercury() {
           <SurfaceParagraph title={data[0].geology.content} />
         )}
 
-        <div>
-          <Footer
-            rotation={data[0].rotation}
-            revolution={data[0].revolution}
-            radius={data[0].radius}
-            temperature={data[0].temperature}
-          />
-        </div>
+        <Footer
+          rotation={data[0].rotation}
+          revolution={data[0].revolution}
+          radius={data[0].radius}
+          temperature={data[0].temperature}
+        />
       </div>
     </>
   );
